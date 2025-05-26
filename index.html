@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شرکت در قرعه‌کشی سو</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0d1b2a;
+      color: #fff;
+      font-family: "Vazirmatn", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: #ffffff;
+      text-align: center;
+    }
+    form {
+      background-color: #1b263b;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      direction: ltr;
+    }
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #0ef;
+    }
+    .btn {
+      background-color: #0ef;
+      color: #000;
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-align: center;
+      color: #0ef;
+    }
+  </style>
+</head>
+<body>
+  <h1>فرم شرکت در قرعه‌کشی نرم‌افزار سو</h1>
+  <form id="lotteryForm" method="POST" action="https://script.google.com/macros/s/AKfycbwZTpYNgQB4bjA1blcDbZVDEFXahn_gbkiWpEFHAH15ZYXS8KBObdNvSLWpR18gWTpS/exec">
+    <div class="input-group">
+      <input type="tel" id="mobile" name="mobile" placeholder="مثلاً 09123456789" required>
+      <i class="fa fa-phone"></i>
+    </div>
+    <button type="submit" class="btn">شرکت در قرعه‌کشی</button>
+    <div class="message" id="message"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById("lotteryForm");
+    const mobileInput = document.getElementById("mobile");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function (e) {
+      const mobile = mobileInput.value;
+      const englishDigits = /^[0-9]+$/;
+
+      if (!englishDigits.test(mobile)) {
+        e.preventDefault();
+        message.innerText = "لطفاً شماره موبایل را با اعداد انگلیسی وارد کنید.";
+        return;
+      }
+
+      if (mobile.length !== 11 || !mobile.startsWith("09")) {
+        e.preventDefault();
+        message.innerText = "شماره موبایل باید 11 رقم و با 09 شروع شود.";
+        return;
+      }
+
+      message.innerText = "شماره با موفقیت ثبت شد. شما در قرعه‌کشی شرکت داده شدید.";
+    });
+  </script>
+</body>
+</html>
